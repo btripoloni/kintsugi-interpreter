@@ -46,6 +46,7 @@ export async function mkComposition(options: BuildOptions): Promise<Derivation> 
 
     const src: Source = {
         type: "fetch_build",
+        source: "build",
         layers: layerHashes,
         entrypoint,
         umu,

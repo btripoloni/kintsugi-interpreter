@@ -44,31 +44,37 @@ export interface RunInBuildArgs {
 export const sources = {
   fetch_url: (args: FetchUrlArgs) => ({
     type: "fetch_url" as const,
+    source: "url" as const,
     ...args,
   }),
 
   fetch_local: (args: FetchLocalArgs) => ({
     type: "fetch_local" as const,
+    source: "local" as const,
     ...args,
   }),
 
   fetch_vase: (args: FetchVaseArgs) => ({
     type: "fetch_vase" as const,
+    source: "vase" as const,
     ...args,
   }),
 
   write_text: (args: { path: string; content: string }) => ({
     type: "write_text" as const,
+    source: "write" as const,
     ...args,
   }),
 
   write_json: (args: WriteContentArgs) => ({
     type: "write_json" as const,
+    source: "write" as const,
     ...args,
   }),
 
   write_toml: (args: WriteContentArgs) => ({
     type: "write_toml" as const,
+    source: "write" as const,
     ...args,
   }),
 

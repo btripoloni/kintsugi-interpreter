@@ -1,7 +1,7 @@
 import { resolveTransitiveLayers } from "./lib/modpack.ts";
 import { Derivation, Source } from "./lib/types.ts";
 
-const dummySrc: Source = { type: "write_text", path: "test.txt", content: "hello" };
+const dummySrc: Source = { type: "write_text", source: "write", path: "test.txt", content: "hello" };
 
 function mockDrv(name: string, deps: Derivation[] = []): Derivation {
     return {
