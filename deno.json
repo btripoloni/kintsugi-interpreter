@@ -1,7 +1,7 @@
 {
   "name": "@btripoloni/kintsugi",
-  "version": "1.0.0",
-  "exports": "./mod.ts",
+  "version": "0.1.0",
+  "exports": "./main.ts",
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/path": "jsr:@std/path@1",
