@@ -139,3 +139,42 @@ export async function writeRunSpec(args: RunSpecArgs): Promise<Derivation> {
     }),
   });
 }
+
+// --- Funções Auxiliares de Conveniência ---
+
+/**
+ * Cria um shard a partir de um caminho local.
+ * Função auxiliar para simplificar a criação de shards locais.
+ */
+export async function mkLocal(
+  name: string,
+  version: string,
+  path: string,
+  deps?: Derivation[]
+): Promise<Derivation> {
+  return await mkShard({
+    name,
+    version,
+    src: sources.fetch_local({ path }),
+    deps,
+  });
+}
+
+/**
+ * Cria um shard a partir de uma URL.
+ * Função auxiliar para simplificar a criação de shards de URL.
+ */
+export async function mkUrl(
+  name: string,
+  version: string,
+  url: string,
+  sha256: string,
+  deps?: Derivation[]
+): Promise<Derivation> {
+  return await mkShard({
+    name,
+    version,
+    src: sources.fetch_url({ url, sha256 }),
+    deps,
+  });
+}

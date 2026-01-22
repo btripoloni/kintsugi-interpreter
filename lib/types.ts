@@ -1,5 +1,6 @@
 export interface FetchUrl {
   type: "fetch_url";
+  source: "url";
   url: string;
   sha256: string;
   unpack?: boolean;
@@ -12,6 +13,7 @@ export interface FetchUrl {
 
 export interface FetchGit {
   type: "fetch_git";
+  source: "git";
   url: string;
   rev?: string;
   ref?: string;
@@ -20,6 +22,7 @@ export interface FetchGit {
 
 export interface FetchLocal {
   type: "fetch_local";
+  source: "local";
   path: string;
   exclude?: string[];
   postFetch?: string;
@@ -27,29 +30,34 @@ export interface FetchLocal {
 
 export interface FetchVase {
   type: "fetch_vase";
+  source: "vase";
   vase: string;
 }
 
 export interface WriteText {
   type: "write_text";
+  source: "write";
   path: string;
   content: string;
 }
 
 export interface WriteJson {
   type: "write_json";
+  source: "write";
   path: string;
   content: unknown;
 }
 
 export interface WriteToml {
   type: "write_toml";
+  source: "write";
   path: string;
   content: unknown;
 }
 
 export interface FetchBuild {
   type: "fetch_build";
+  source: "build";
   layers: string[];
   entrypoint?: string;
   umu?: string;
