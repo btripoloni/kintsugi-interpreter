@@ -7,7 +7,7 @@ TypeScript/Deno library for creating declarative and reproducible modpacks using
 This package is available on JSR (JavaScript Registry):
 
 ```bash
-deno add jsr:@btripoloni/kintsugi@1.0.0
+deno add jsr:@btripoloni/kintsugi@0.1.0
 ```
 
 Or add manually to your `deno.json`:
@@ -15,7 +15,7 @@ Or add manually to your `deno.json`:
 ```json
 {
   "imports": {
-    "kintsugi/": "jsr:@btripoloni/kintsugi@1.0.0/"
+    "kintsugi": "jsr:@btripoloni/kintsugi@0.1.0"
   }
 }
 ```
@@ -23,7 +23,7 @@ Or add manually to your `deno.json`:
 ## Basic Usage
 
 ```typescript
-import { mkLocal, mkUrl, mkBuild, sources } from "kintsugi/mod.ts";
+import { mkLocal, mkUrl, mkBuild, sources } from "jsr:@btripoloni/kintsugi@0.1.0";
 
 // Create a shard from a local path
 const game = await mkLocal("skyrim-se", "1.6.117", "/games/skyrim");
@@ -79,6 +79,26 @@ The `sources` object provides functions to create different types of sources:
 
 For complete documentation, see the [Kintsugi documentation](https://github.com/btripoloni/kintsugi).
 
+## Development
+
+### Running Tests
+
+```bash
+deno test
+```
+
+### Publishing to JSR
+
+1. Make sure you're logged in to JSR:
+   ```bash
+   deno publish --dry-run
+   ```
+
+2. Publish the package:
+   ```bash
+   deno publish
+   ```
+
 ## License
 
-MIT
+Apache-2.0

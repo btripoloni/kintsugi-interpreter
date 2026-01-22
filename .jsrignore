@@ -1,0 +1,13 @@
+# Test files
+tests/
+**/*_test.ts
+main_test.ts
+
+# Development files
+flake.nix
+flake.lock
+.gitignore
+deno.lock
+
+# Scripts
+verify_scenario.ts

@@ -1,7 +1,29 @@
 {
   "name": "@btripoloni/kintsugi",
   "version": "0.1.0",
+  "description": "TypeScript/Deno library for creating declarative and reproducible modpacks using Kintsugi",
   "exports": "./main.ts",
+  "publish": {
+    "exclude": [
+      "tests/",
+      "**/*_test.ts",
+      "main_test.ts",
+      "flake.nix",
+      "flake.lock",
+      "deno.lock",
+      ".gitignore",
+      "verify_scenario.ts"
+    ]
+  },
+  "license": "Apache-2.0",
+  "repository": "github:btripoloni/kintsugi-interpreter",
+  "keywords": [
+    "kintsugi",
+    "modpack",
+    "derivation",
+    "reproducible",
+    "build-system"
+  ],
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/path": "jsr:@std/path@1",

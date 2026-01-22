@@ -1,6 +1,6 @@
-import { crypto } from "jsr:@std/crypto";
-import { encodeHex } from "jsr:@std/encoding/hex";
-import { join } from "jsr:@std/path";
+import { crypto } from "jsr:@std/crypto@1";
+import { encodeHex } from "jsr:@std/encoding@1/hex";
+import { join } from "jsr:@std/path@1";
 import { Derivation, Source } from "./types.ts";
 
 /**
@@ -8,6 +8,10 @@ import { Derivation, Source } from "./types.ts";
  * This is critical for hash generation - the same content must always produce the same hash.
  * 
  * Note: undefined values are preserved (JSON.stringify will omit them, which is correct behavior).
+ * 
+ * @param obj - Object to sort keys recursively
+ * @returns New object with all keys sorted recursively
+ * @internal
  */
 function sortKeysRecursively(obj: any): any {
     if (obj === null || obj === undefined) {
@@ -33,6 +37,23 @@ function sortKeysRecursively(obj: any): any {
     return sorted;
 }
 
+/**
+ * Generates a deterministic hash for a derivation and creates the complete derivation object.
+ * The hash is computed from the JSON serialization of the derivation (excluding the `out` field).
+ * 
+ * @param derivation - Derivation definition without the `out` field
+ * @returns Complete derivation with computed `out` hash in format: `[hash]-[name]-[version]`
+ * 
+ * @example
+ * ```typescript
+ * const drv = await hashDerivation({
+ *   name: "my-shard",
+ *   version: "1.0.0",
+ *   src: sources.fetch_url({ url: "https://...", sha256: "..." })
+ * });
+ * // drv.out will be something like "a1b2c3d4-my-shard-1.0.0"
+ * ```
+ */
 export async function hashDerivation(derivation: Omit<Derivation, "out"> & { name: string; version: string }): Promise<Derivation> {
     // Create a copy to sort keys or ensure deterministic serialization
     const { name, version, ...rest } = derivation;
